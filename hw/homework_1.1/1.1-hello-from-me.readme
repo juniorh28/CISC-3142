@@ -1,0 +1,20 @@
+1.1 Hello from you (2-pt)
+Write a C++ program to print the following banner to the console:
+
++---------------------------+
+| Hello from (your name)    |
+| Have programmed in:       |
+| (List languages you know) |
++---------------------------+ 
+
+Specific requirements:
+
+    You must print those "+-|" characters that make up the boundary of the banner
+    There is a space between the left edge and the first character of each string
+    You could output more than 3 lines of text in total, but see below
+    You must make the banner wide enough to accommodate the longest string, but not too wide for it to have more than one trailing space
+    Important: you must achieve the above in an automatic way,
+        That is, you don't manually assign fixed number of '-' or spaces, or a literal string, to have a fitting boundary
+        In other word, your program would always generate a fitting boundary with any reasonably-sized string for the third line.
+        Hint: you may use the string class (from <string>), which has a member function .length()
+    It's up to you on whether to create helper functions, though it's recommended
