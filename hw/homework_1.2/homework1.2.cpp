@@ -19,7 +19,7 @@ public:
      * return: bool
      * method: checks if the number given is a prime number or not.
     */
-    bool checkPrime(int& num)
+    bool checkPrime(int &num)
     {
         if (num == 2 || num == 3)
             return true;
@@ -35,64 +35,79 @@ public:
 
         return true;
     }
-    
+
     /**
      * factor
      * params: int num
      * return: void
      * method: prints all factor of a given number
     */
-    void factor(int& num, ofstream& outputFile)
+    void factor(int &num, ofstream &outputFile)
     {
         //idx is the starting idx
         int idx = 0;
+        int passArrLength = 0;
         double a = round(num / 2);
         int factorArr[int(a)];
+        int passSqrt[int(a)];
         for (int i = 2; i <= sqrt(num); i++)
         {
 
             if (num % i == 0)
             {
-                if (sqrt(num) == i) //if the sqrt(num) and i are same number, increase idx by 1.
+                cout << " idx: " << idx;
+                cout << " num: " << i << ": " << (num / i) << "\n";
+                //if the sqrt(num) and i are same number, increase idx by 1.
+                if (sqrt(num) == i)
                 {
-                    factorArr[idx] = i;
-                    idx += 1;
+                    cout << "last number: " << i << endl;
+                    factorArr[idx++] = i;
+                    cout << "factortArr: " << i << endl;
                 }
                 else
                 {
                     //assign the two factors
                     factorArr[idx] = i;
-                    factorArr[idx + 1] = num / i;
-                    idx += 2;
+                    cout << "factortArr: " << i << endl;
+                    passSqrt[idx] = num / i;
+                    passArrLength++;
+                    cout << "passArr: " << (num / i) << endl;
+                    //factorArr[idx + 1] = num / i;
+                    idx++;
                 }
+                
             }
         }
-
         //if the size of array is greater than 2
         //reorder in ascending order
         if (idx > 2)
         {
             int temp;
+            int len = sizeof(passSqrt) / sizeof(passSqrt[0]);
+            int newPassSqrt[int(a)];
+            // if(len % 2 != 0){
+
+            // }
             for (int i = 1; i < idx; i++)
             {
-                for (int j = 1; j < idx; j++)
+                for (int j = 0; j <= idx; j++)
                 {
                     if (j + 1 < idx)
                     {
-                        if (factorArr[j] > factorArr[j + 1])
+                        if (passSqrt[j] > passSqrt[j + 1])
                         {
-                            temp = factorArr[j];
-                            factorArr[j] = factorArr[j + 1];
-                            factorArr[j + 1] = temp;
+                            temp = passSqrt[j];
+                            passSqrt[j] = passSqrt[j + 1];
+                            passSqrt[j + 1] = temp;
                         }
                     }
                 }
             }
         }
-
+        cout<<num<<" has "<<passArrLength<< " ";
         printArray(factorArr, idx, outputFile);
+        printArray(passSqrt, idx, outputFile);
     }
-
 
     /**
      * printArray
@@ -101,8 +116,11 @@ public:
      * return: void
      * method: prints all values inside of the given array
     */
-    void printArray(int arr[], int& idx, ofstream& outputFile)
+    void printArray(int arr[], int &idx, ofstream &outputFile)
     {
+        // if
+        // {
+        // }
         for (int i = 0; i < idx; i++)
         {
             if (i == idx - 1)
