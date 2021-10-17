@@ -1,0 +1,5 @@
+L1.2 Use a pointer to output the given string in reverse
+char s[] = "stressed";
+Note: There is a standard library for handling C-style strings, <cstring>, which has strlen()
+to get the string's length. See if you can work this out without using it. Remember that C-style
+strings are ended with a null, '\0'.
