@@ -3,6 +3,7 @@
 //Homework 2.2 .hpp
 
 #include <iostream>
+#include <string>
 #include <stdexcept>
 
 using namespace std;
@@ -18,11 +19,10 @@ private:
 public:
     Ordpair(T f, T s) : first{f}, second{s}{ 
         //since first and second will be defined in TTPlayer with the enum values, we will be able to tell if f<s and throw on true;
-        if (this->first < this->second)
+        if (this->second < this->first || this->first == this->second)
         {
             throw invalid_argument("Error");
         }
-
     };
 
     void setFirst(T first)
@@ -50,6 +50,7 @@ public:
             return true;
     };
 
-    std::string toString() {return "(" + first.toString() + " | " + second.toString() + ")"; };
 
+    //this will return Orpdair's string along side the first and second toString
+    string toString() {return string("(") + first.toString() + string(" | ") + second.toString() + string(")"); };
 };
