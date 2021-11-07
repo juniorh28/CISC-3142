@@ -7,15 +7,15 @@
 //https://en.cppreference.com/w/cpp/chrono
 
 #include <iostream>
-#include <chrono> //duration, system_clock
-#include <random> //shuffle
-#include <set>              // ------------------
-#include <list>             //|  Containers      |
-#include <unordered_set>    //|   Used           |
-#include <vector>           // ------------------
+#include <chrono>        //duration, system_clock
+#include <random>        //shuffle
+#include <set>           // ------------------
+#include <list>          //|  Containers      |
+#include <unordered_set> //|   Used           |
+#include <vector>        // ------------------
 
 using namespace std;
-using namespace chrono_literals;// use for system_clock
+using namespace chrono_literals; // use for system_clock
 
 template <class T> //T will be allow use of different kinds of containers.
 
@@ -24,9 +24,10 @@ template <class T> //T will be allow use of different kinds of containers.
  * 
  * @param initalVector - the starting vector created in main
  * @param emptyContainer - the empty container made in main, being inserted
+ * @param InsertingFromEnd- indicate if insertion is from beginning or end
  * @param containerType - the name of the container
  */
-void containerInsert(vector<int> initalVector, T &emptyContainer, string containerType)
+void containerInsert(vector<int> initalVector, T &emptyContainer, bool InsertingFromEnd, string containerType)
 {
 
     //the starting time of insertion process.
@@ -34,10 +35,18 @@ void containerInsert(vector<int> initalVector, T &emptyContainer, string contain
 
     //starting at the begining of the intial vector,
     //while iterator not at the end of inital vector
-    for (auto it = initalVector.begin(); it != initalVector.end(); ++it)
+    for (auto itValue = initalVector.begin(); itValue != initalVector.end(); ++itValue)
     {
-        //insert into the empty container the value of it at the beginning
-        auto itr = emptyContainer.insert(emptyContainer.begin(), *it);
+        if (InsertingFromEnd)
+        {
+            //insert at the end of empty container the value itValue points to
+            auto itr = emptyContainer.insert(emptyContainer.end(), *itValue);
+        }
+        else
+        {
+            //insert into the beginning of empty container the value itValue points to
+            auto itr = emptyContainer.insert(emptyContainer.begin(), *itValue);
+        }
     }
 
     //ending time of the insertion process.
@@ -75,19 +84,39 @@ int main()
 
     //insert contant of vect into the 4 empty containers
 
+    cout << "\n\nInsertion from end\n";
     //new vector
-    vector<int> vector2;
-    containerInsert(vect, vector2, "vector");
+    vector<int> vectorA;
+    containerInsert(vect, vectorA, true, "vector");
 
     //set
-    set<int> set;
-    containerInsert(vect, set, "set");
-    
+    set<int> setA;
+    containerInsert(vect, setA, true, "set");
+
     //list
-    list<int> list;
-    containerInsert(vect, list, "list");
+    list<int> listA;
+    containerInsert(vect, listA, true, "list");
 
     //unordered_set
-    unordered_set<int> unordered_set;
-    containerInsert(vect, unordered_set, "unordered_set");
+    unordered_set<int> unordered_setA;
+    containerInsert(vect, unordered_setA, true, "unordered_set");
+
+    cout<< "\n\nInsertion from beginning\n";
+    //inserting at the beginning
+
+    //new vector
+    vector<int> vectorB;
+    containerInsert(vect, vectorB, false, "vector");
+
+    //set
+    set<int> setB;
+    containerInsert(vect, setB, true, "set");
+
+    //list
+    list<int> listB;
+    containerInsert(vect, listB, true, "list");
+
+    //unordered_set
+    unordered_set<int> unordered_setB;
+    containerInsert(vect, unordered_setB, true, "unordered_set");
 }
