@@ -7,9 +7,10 @@
 //https://en.cppreference.com/w/cpp/chrono
 
 #include <iostream>
+#include <algorithm>     // std::find
 #include <chrono>        //duration, system_clock
 #include <random>        //shuffle
-#include <set>           // ------------------
+#include <set>           // __________________
 #include <list>          //|  Containers      |
 #include <unordered_set> //|   Used           |
 #include <vector>        // ------------------
@@ -57,6 +58,74 @@ void containerInsert(vector<int> initalVector, T &emptyContainer, bool Inserting
     cout << "Insertion time for " << containerType << " " << diff.count() << "s \n";
 }
 
+template <class P> //T will be allow use of different kinds of containers.
+
+/**
+ * @brief - Will search the container for the numbers 1 ~ 10000. Then it will print the total time to complete search.
+ * 
+ * @param container - the randomly filled container being searched
+ * @param containerName - the name of the container
+ * @param fromEnd - checking if the container was filled from the end
+ */
+void searchContainer(P &container, string containerName, bool fromEnd)
+{
+    string str;
+    if (fromEnd)
+        str = "A";
+    else
+        str = "B";
+    int search = 10000;
+    auto startTime = chrono::system_clock::now();
+
+    //starting with 1 up to 10k
+    for (int i = 1; i <= search; ++i)
+    {
+        //look for value i from beginning to end
+        auto it = find(container.begin(), container.end(), i);
+    }
+    auto endTime = chrono::system_clock::now();
+    chrono::duration<double> diff = endTime - startTime;
+    cout << "Search time for " << containerName << str << " " << diff.count() << "s \n";
+}
+
+template <class K>
+/**
+ * @brief - a search for sets and unordered sets
+ * 
+ * @param container - the type of container that will be searched
+ * @param containerName - the name of the container
+ * @param fromEnd - if its searching container that was inserted from front or back
+ * @param unordered - if its an unordered set or set
+ */
+void searchContainer2(K &container, string containerName, bool fromEnd, bool unordered)
+{
+    int search = 10000;
+    auto startTime = chrono::system_clock::now();
+    //if its unordered set, use its find method
+    if (unordered)
+    {
+        for (int i = 1; i <= search; ++i)
+        {
+            //look for value i from beginning to end
+            std::unordered_set<int>::const_iterator got = container.find(i);
+        }
+    }
+    //else use the set's find method
+    else
+    {
+        for (int i = 1; i <= search; ++i)
+        {
+            //look for value i from beginning to end
+            //std::set<int>::const_iterator it;
+            //it = container.find(i);
+        }
+    }
+    auto endTime = chrono::system_clock::now();
+    chrono::duration<double> difference = endTime - startTime;
+    cout << "Search time for " << containerName << " " << difference.count() << "s\n";
+}
+
+//bool operator < (const vector) const{}
 int main()
 {
 
@@ -84,7 +153,7 @@ int main()
 
     //insert contant of vect into the 4 empty containers
 
-    cout << "\n\nInsertion from end\n";
+    cout << "\nInsertion from end\n";
     //new vector
     vector<int> vectorA;
     containerInsert(vect, vectorA, true, "vector");
@@ -101,7 +170,7 @@ int main()
     unordered_set<int> unordered_setA;
     containerInsert(vect, unordered_setA, true, "unordered_set");
 
-    cout<< "\n\nInsertion from beginning\n";
+    cout << "\n\nInsertion from beginning\n";
     //inserting at the beginning
 
     //new vector
@@ -119,4 +188,53 @@ int main()
     //unordered_set
     unordered_set<int> unordered_setB;
     containerInsert(vect, unordered_setB, true, "unordered_set");
+
+    cout << "\n\n";
+
+    //searching the container for int 1~10k
+    //searching vector
+    searchContainer(vectorA, "Vector", true);
+    searchContainer(vectorB, "Vector", false);
+
+    cout << "\n";
+
+    searchContainer(setA, "Set", true);
+    searchContainer(setB, "Set", false);
+
+    cout << "\n";
+    //searching set
+
+    // startTime = chrono::system_clock::now();
+    // for (int i = 1; i <= 10000; ++i){
+    //     auto search = setA.find(i);
+    // }
+    // endTime = chrono::system_clock::now();
+    // chrono::duration<double> difference = endTime - startTime;
+    // cout << "Search time for SetA " << difference.count() << "s\n ";
+    // searchContainer2(setA, "setA", true, false);
+    //searchContainer2(setB, "setB", false , false);
+
+/*
+    std::set<int>::iterator it;
+    startTime = chrono::system_clock::now();
+    for (it = setA.begin(); it != setA.end(); ++it)
+    {
+        cout << setA.find(it) << endl;
+    }
+    endTime = chrono::system_clock::now();
+    chrono::duration<double> difference = endTime - startTime;
+    cout << "Search time for setA " << difference.count() << " s\n ";
+*/
+
+    //searching list
+    searchContainer(listA, "List", true);
+    searchContainer(listB, "List", false);
+
+    cout << "\n";
+
+    //searching unordered_set
+    //https://www.cplusplus.com/reference/unordered_set/unordered_set/find/
+    //starting with 1 up to 10k
+    searchContainer2(unordered_setA, "unordered_setA", true, true);
+    searchContainer2(unordered_setB, "unordered_setB", false, true);
 }
