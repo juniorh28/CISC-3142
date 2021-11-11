@@ -11,31 +11,24 @@
 #include <ios>     //used to get stream size
 #include <limits>  //used to get numeric limits
 #include <sstream> //converts string to number
+#include <cstddef>
 
 using namespace std;
 
 // //functor to get the areaCode of phone number
 struct AreaCode
 {
-    string areaCode;                            //the area code we are searching for
-    AreaCode(string t) : areaCode(t) {}         // take in a struct with a unknown area  code
+    int areaCode;                               //the area code we are searching for
+    AreaCode(int t) : areaCode(t) {}            // take in a struct with a unknown area  code
     bool operator()(const pair<int, string> &p) //compare if the string(area code) is the same as the area code
     {
+        int number;
         string str = p.second.substr(1, 3);
-        if (str != areaCode)
-            cout << " && ask" << endl;
-        //string str = p.second;
-        cout << "inside struct where str is: " << str << " area code " << areaCode << endl;
-        return str == areaCode;
+        cout << "Str: " << str <<endl;
+        istringstream(str) >> number;
+        return number == areaCode;
     }
 };
-
-//functor that takes in a phone number
-// struct PhoneNumber
-// {
-//     int key;
-//     string phoneNum;
-// };
 
 int main()
 {
@@ -58,10 +51,9 @@ int main()
 
         //read the line upto the comma
         getline(myfile, str, ',');
-        // cin.ignore(' ');
-        // string -> integer
-        std::istringstream(str) >> key;
-        // cin.ignore(' '); //skip the empty space
+        // converts string -> integer
+        istringstream(str) >> key;
+
         //get the remaining line
         getline(myfile, phoneNumber);
 
@@ -70,30 +62,31 @@ int main()
     }
     cout << "Size of map: " << map.size() << endl;
 
-    //auto p = find_if(map.begin(), map.end(), AreaCode("347"));
-    //if(p != map.end())++count;
-    // for (auto it = p; it != map.end(); ++it){
-    //     auto p = find_if(map.begin(), map.end(), AreaCode("347"));
-    //     if (p != map.end())
-    //     {
-    //         ++count;
-    //     }
-    // }
-
     vector<string> vect1;
-    //vector<string> vect2;
     set<string> set1;
-    set<int>::iterator iterator;
 
     cout << "\nThe ID(s) with the given phone# 212-536-6331: " << endl;
     for (auto it = map.begin(); it != map.end(); ++it)
     {
+
+        if (it->second.substr(1, 3) == "347")
+            ++count;
+
+        //This is the right way but result for cout is total amp size, for now im using substr till I find out how to fix
+        // auto p = find_if(map.begin(), map.end(), AreaCode(347))
+        // if(p != map.end())
+        //     ++count;
+
+
+
         if (it->second == " 212-536-6331")
             cout << it->first << endl;
 
         if (it->second.substr(1, 3) == "212")
             vect1.insert(vect1.end(), it->second);
     }
+
+    cout << "\nphone number with 347 is: " << count << endl;
 
     cout << "\n";
     for (int i = 0; i < vect1.size(); ++i)
