@@ -1,4 +1,4 @@
-3.1 Evaluating performance of STL containers (4-pt)
+# 3.1 Evaluating performance of STL containers (4-pt)
 
 Conduct an evaluation of the performance of STL containers (vector, list, set, unordered_set) in inserting and finding elements, with a relatively large data set. What you'll be measuring is the execution time. Obviously it's dependent on the speed of the computer one uses, so what matters is the relative speed (relative to the vector's speed in percentage)
 

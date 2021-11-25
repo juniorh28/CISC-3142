@@ -1,4 +1,5 @@
-4.2 A library record class with derived classes for books and CDs (5-pt)
+# 4.2 A library record class with derived classes for books and CDs (5-pt)
+
 The ItemRecord class maintains books and other media records for a library. Its attributes include the title(string), price(double), rating(char: 'A'-'D' in descending popularity). The operations include:
 1. a constructor that takes default values ("placeholder", 0.99, 'D'), and checks for invariants (negative price, invalid rating letters, etc)
 2. individual getters that return the item's title, price, and rating

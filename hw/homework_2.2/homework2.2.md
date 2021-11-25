@@ -1,4 +1,4 @@
-2.2 A toy template class (5-pt)
+# 2.2 A toy template class (5-pt)
 This exercise attempts to tie together the abstraction mechanisms covered in lec4.
 
 OrdPair

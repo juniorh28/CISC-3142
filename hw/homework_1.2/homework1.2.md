@@ -1,4 +1,4 @@
-1.2 Finding non-trivial divisors for a sequence of integers from a file, writing results to another file (4-pt)
+# 1.2 Finding non-trivial divisors for a sequence of integers from a file, writing results to another file (4-pt)
 Write a C++ program to do the following:
 
     Read from a text file "input.txt", which has one integer on each line and should assume the values as given in the example below

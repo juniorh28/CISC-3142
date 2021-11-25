@@ -1,4 +1,4 @@
-2.1 Sorting command line arguments (3-pt)
+# 2.1 Sorting command line arguments (3-pt)
 
 This exercise is all about procedural programming (lec3), and specifically the topics of pointers, arrays, and loops. 
 Write a C++ program that prints out all command line arguments both in their original order and in the alphabetically sorted order. 
