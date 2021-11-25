@@ -64,7 +64,15 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__tree": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp",
+        "filesystem": "cpp",
+        "list": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "map": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

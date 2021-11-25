@@ -16,7 +16,7 @@ using std::string;
  * @param s1 - The first char array to compare to find 'Yanks'
  * @return int - the amount of attempts to find the word 'Yanks
  */
-int decipher(const char s1[], const string hint)
+int decipher(const char s1[], const string alphabet, const string hint)
 {
 
     //copy s1 into temp to allow manipulation
@@ -41,12 +41,12 @@ int decipher(const char s1[], const string hint)
             //reset back to Capital A
             if (temp[i] == 'Z')
             {
-                temp[i] = 'A';
+                temp[i] = 'a';
             }
             //reset back to lower case A
             else if (temp[i] == 'z')
             {
-                temp[i] = 'a';
+                temp[i] = 'A';
             }
             //set the char value of temp to the next char value
             else
@@ -108,15 +108,15 @@ void decipherUpTo(const char s2[], int shiftNum)
     //loop and increase the char value of temp[i] up to the shift number
     for (int i = 0; i < length; ++i)
     {
-        //reset back to Capital A
+        //continue back to lowercase A
         if (temp[i] == 'Z')
         {
-            temp[i] = 'A';
+            temp[i] = 'a';
         }
-        //reset back to lower case A
+        //reset back to Capital case A
         else if (temp[i] == 'z')
         {
-            temp[i] = 'a';
+            temp[i] = 'A';
         }
         //set the char value of temp to the next char value
         else
@@ -131,6 +131,7 @@ void decipherUpTo(const char s2[], int shiftNum)
 int main()
 {
 
+    const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     //we need to be able to reset to the original
     //char s1[] = "abc";
     char s1[] = "uIFzBOLTbSFbMTPlOPXObTuIFcSPOYcPNCFST";
@@ -138,13 +139,14 @@ int main()
 
     const string hint = "Yanks";
     //const string hint = "def";
-    int decipherNum = decipher(s1, hint);
+    int decipherNum = decipher(s1, alphabet, hint);
 
     if (decipherNum > 0)
     {
         cout << hint << "was found on attempt #" << decipherNum << endl;
     }
     decipherUpTo(s2,-1);
+
 
     return 0;
 }

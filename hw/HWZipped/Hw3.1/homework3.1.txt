@@ -1,0 +1,17 @@
+Junior Hernnandez
+CISC 3142
+Homework 3.1
+
+Each container has its strength and weakness, some are faster at searching, others are faster at inserting. 
+
+Searching
+the big O for searching Vector is O(n).
+the big O for searching List is O(n).
+the big O for searching Set is O(log n).
+the big O for searching Unordered_set is O(1).
+
+Inserting
+the big O for searching Vector is O(1).
+the big O for searching List is O(1).
+the big O for searching Set is O(log n).
+the big O for searching Unordered_set is O(log n).
